@@ -42,6 +42,6 @@ Next, hook the MAX7219 up to each other, using a zig-zag pattern:
 
 The next step is to load the code to the Arduino. The simulation should start working straight away.
 
-![](https://github.com/jackmachiela/PhotoLife/blob/main/Images/Conway's%20Game%20of%20Life%20animated.MOV)
+![](https://github.com/jackmachiela/PhotoLife/blob/main/Images/Conway's%20Game%20of%20Life%20animated.gif)
 
 The next step I've not completed yet - install it into a photo-frame. I'll be scouring the local second hand shops for a nice frame later this week, will update it here once I'm done.
