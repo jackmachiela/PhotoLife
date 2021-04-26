@@ -47,13 +47,13 @@ Next, hook the MAX7219 up to each other, using a zig-zag pattern:
 
 The next step is to load the code to the Arduino. The simulation should start working straight away.
 
-	![](https://github.com/jackmachiela/PhotoLife/blob/main/Images/Conway's%20Game%20of%20Life%20animated.gif)
+![](https://github.com/jackmachiela/PhotoLife/blob/main/Images/Conway's%20Game%20of%20Life%20animated.gif)
 
 Once you've hooked up the Arduino, it becomes a bit easier to install the volt-meter as well. I've used one of the WPM pins (rather than an analogue pin) for no really good reason, apart from the lack of analogue pins on the Mini-D1 I'm thinking of using later possibly.
 
 Hook up the Volt meter to the Arduino's GND and D3 - the cheaper meters often aren't labelled, so you may have to try both ways. It should be doing this:
 
-	![](https://github.com/jackmachiela/PhotoLife/blob/main/Images/Conway's%20Game%20of%20Life%20Volt%20meter.gif)
+![](https://github.com/jackmachiela/PhotoLife/blob/main/Images/Conway's%20Game%20of%20Life%20Volt%20meter.gif)
 
 
 The next step I've not completed yet - install it into a photo-frame. I'll be scouring the local second hand shops for a nice frame later this week, will update it here once I'm done.
