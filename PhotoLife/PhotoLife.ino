@@ -40,8 +40,13 @@ int lastC = 0; // last cursor column
 
 float iteration = 0;
 
-void setup(){
+int LifeMeter = 3;   // Volt-meter connected to analog pin 3, shows number of life points on display
 
+void setup(){
+  Serial.begin(74880);
+
+  pinMode(LifeMeter, OUTPUT);  // sets the pin as output
+  
   randomSeed(analogRead(0));
   RandomLifeStart();
   
@@ -106,6 +111,7 @@ void NextLife(){
   int y;
   boolean value;
   boolean next[ROWS][COLS]; // stores the next state of the cells
+  int weight = 0;   //total number of on-points
   
 //  matrix.lock();           // run this to speed things up
 
@@ -139,8 +145,12 @@ void NextLife(){
       // apply the rules
       if (current_state[r][c] && liveNeighbors >= 2 && liveNeighbors <= 3) { // live cells with 2 or 3 neighbors remain alive
         value = true;
+ 
+        weight++;
+
       } else if (!current_state[r][c] && liveNeighbors == 3) { // dead cells with 3 neighbors become alive
         value = true;
+        weight++;
       } else {
         value = false;
       }
@@ -155,5 +165,10 @@ void NextLife(){
 
   // discard the old state and keep the new one
   memcpy(current_state, next, sizeof next);
+  
+  analogWrite(LifeMeter,weight);    // analogWrite values from 0 to 255
+  
+ // Serial.println(weight);
+  
   
 }
