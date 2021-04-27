@@ -37,20 +37,24 @@ const int ROWS = (MDY*8);
 boolean current_state[ROWS][COLS]; // stores the current state of the cells
 int lastR = 0; // last cursor row
 int lastC = 0; // last cursor column
+int topWeight = 0; // highest weight so far
 
 float iteration = 0;
 
-int LifeMeter = 3;   // Volt-meter connected to analog pin 3, shows number of life points on display
+int charge = 0;
+
+int LifeMeter = 3;     // Volt-meter connected to digital PWM pin 3, shows number of life points on display
+int ChargeMeter = 5;   // Volt-meter connected to digital PWM pin 3, shows number of life points on display
 
 void setup(){
   Serial.begin(74880);
 
-  pinMode(LifeMeter, OUTPUT);  // sets the pin as output
+  pinMode(LifeMeter, OUTPUT);    // sets the pin as output
+  pinMode(ChargeMeter, OUTPUT);  // sets the pin as output
   
   randomSeed(analogRead(0));
   RandomLifeStart();
   
-
 }
 
 void loop(){
@@ -83,6 +87,7 @@ void RandomMutation() {
     }
   }
   matrix.unlock();
+  charge = 0;
 
 }
 
@@ -104,6 +109,8 @@ void RandomLifeStart() {
     }
   }
   matrix.unlock();
+  topWeight = 0;
+  
 }
 
 void NextLife(){
@@ -165,10 +172,14 @@ void NextLife(){
 
   // discard the old state and keep the new one
   memcpy(current_state, next, sizeof next);
-  
-  analogWrite(LifeMeter,weight);    // analogWrite values from 0 to 255
-  
- // Serial.println(weight);
-  
+
+  if (weight >= topWeight) topWeight=weight;
+
+  analogWrite(LifeMeter,map(weight, 0, 255, 0, topWeight));                    // analogWrite values from 0 to 255
+
+    if (charge < 70)  charge++;
+    if (charge == 70) charge=55;
+    
+  analogWrite(ChargeMeter,charge);                    // analogWrite values from 0 to 255
   
 }
