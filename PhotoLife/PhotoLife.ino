@@ -12,14 +12,26 @@
 // 
 
 
-/*
- * Matrix VCC - MC 5v
- * Matrix GND - MC GND
- * Matrix DIN - MC Pin 11 or MOSI
- * Matrix CS  - MC Pin 10 or SS
- * Matrix CLK - MC Pin 13 or SCK
+/*  MAX-7219 LCD Matrix (8*32) - join three of these together to form a long 8*72 matrix, then mount them in a rectanglular 24*32 block (see readme)
+ *   Connect them to the Arduino like this:
+ * (Matrix) VCC - (Uno or Nano) 5v (or VIN)
+ * (Matrix) GND - (Uno or Nano) GND
+ * (Matrix) DIN - (Uno or Nano) Pin 11 or MOSI
+ * (Matrix) CS  - (Uno or Nano) Pin 10 or SS
+ * (Matrix) CLK - (Uno or Nano) Pin 13 or SCK
+ */
+
+/* Volt Meter 1 (Population) is connected like this:
+ *  (V1) Pos - (Uno or Nano) D3 (PWM)
+ *  (V1) Neg - (Uno or Nano) GND
  */
  
+/* Volt Meter 2 (Charge) is connected like this:
+ *  (V2) Pos - (Uno or Nano) D5 (PWM)
+ *  (V2) Neg - (Uno or Nano) GND
+ */
+ 
+
 #include <MatrixGL.h>
 
 #define CLK_PIN   13  // SCK  //13    white  CLK
