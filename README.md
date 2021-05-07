@@ -24,22 +24,25 @@ Conway's Game of Life code shamelessly lifted from gmussi
 
 - 1x Arduino I used a chinese Uno clone to test with, but it's big and bulky and won't fit into a standard photo-frame. I'll be changing it to a smaller unit next, a pro or a nano, or even a D1-Mini (and add a NTP clock or something).
 - 3x MAX7219 1x4 LED matrices
-- 1x Analogue 5v Volt meter
+- 2x Analogue 5v Volt meter
 - 1x Knife Switch (aka Frankenstein Switch)
+- 1x small red LED
 - Some wiring
-- 3" x 5" Photo-frame, wood
+- Photo-frame, wood, at least 20cm x 25cm
 
-#### Setup
+#### Electronics Setup
+
+##### LED blocks
 
 Hook up the first MAX7219 block to the Arduino:
 
     LEDs - Arduino
     ---- - -------
-    VCC  - MC 5v
-    GND  - MC GND
-    DIN  - MC Pin 11 (MOSI)
-    CS   - MC Pin 10 (SS)
-    CLK  - MC Pin 13 (SCK)
+    VCC  - 5v
+    GND  - GND
+    DIN  - Pin 11 (MOSI)
+    CS   - Pin 10 (SS)
+    CLK  - Pin 13 (SCK)
     
 Next, hook the MAX7219 up to each other, using a zig-zag pattern:
 
@@ -49,11 +52,48 @@ The next step is to load the code to the Arduino. The simulation should start wo
 
 ![](https://github.com/jackmachiela/PhotoLife/blob/main/Images/Conway's%20Game%20of%20Life%20animated.gif)
 
-Once you've hooked up the Arduino, it becomes a bit easier to install the volt-meter as well. I've used one of the WPM pins (rather than an analogue pin) for no really good reason, apart from the lack of analogue pins on the Mini-D1 I'm thinking of using later possibly.
+Once you've hooked up the Arduino, it becomes a bit easier to install the volt-meters as well. I've used the WPM pins (rather than an analogue pin) for no really good reason, apart from the lack of analogue pins on the Mini-D1 I was thinking of possibly using later.
 
-Hook up the Volt meter to the Arduino's GND and D3 - the cheaper meters often aren't labelled, so you may have to try both ways. It should be doing this:
+##### Volt Meters and Warning LED
+Hook up the first Volt meter to the Arduino's GND and D3 - the cheaper meters often aren't labelled, so you may have to try both ways.
+
+Volt Meter 1 (Population):
+
+    Meter - Arduino
+    ----- - -------
+    POS   - D3 (WPM)
+    NEG   - GND
+
+
+Volt Meter 2 (Life Charge):
+
+    Meter - Arduino
+    ----- - -------
+    POS   - D5 (WPM)
+    NEG   - GND
+
+Life Charge Danger LED:
+
+    LED - Arduino
+    ----- - -------
+    POS   - D6 (WPM)
+    NEG   - GND
+
+The meters should be doing this:
 
 ![](https://github.com/jackmachiela/PhotoLife/blob/main/Images/Conway's%20Game%20of%20Life%20Volt%20meter.gif)
 
+I've included a few graphics files that I used to replace the Volt measurements, you may have to adjust that depending on the meters you use. Use your imagination to make your own.
 
-The next step I've not completed yet - install it into a photo-frame. I'll be scouring the local second hand shops for a nice frame later this week, will update it here once I'm done.
+![](https://github.com/jackmachiela/PhotoLife/blob/main/Labels/Life%20Charge%20Meter.jpg)
+
+![](https://github.com/jackmachiela/PhotoLife/blob/main/Labels/Population%20Meter.jpg)
+
+The LED will start blinking when the charge is at the maximum, and the Life-Charge meter will jump around at the maximum as well, for extra drama.
+
+Unfortunately I have to wait for a bit to complete my electronics - I've ordered a Knife-Switch (aka the Frankenstein Switch) on AliExpress, and I'm just waiting for that to arrive. For me the important point is to make it look dramatic and theatrical, so when you throw the switch, new life bursts onto the display.
+
+#### Photoframe Setup
+
+The next step is to install it into a photo-frame. I have found a nice wooden frame, and have spent a good amount getting everything mounted in it. I'm not an expert on this side of things, and I'm sure there are easier ways to do it, but here's a few photos of how I did it. YMMV.
+
