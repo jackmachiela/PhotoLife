@@ -30,6 +30,11 @@
  *  (V2) Pos - (Uno or Nano) D5 (PWM)
  *  (V2) Neg - (Uno or Nano) GND
  */
+
+/* Charge LED is connected like this:
+ *  (LED) Pos - (Uno or Nano) D6 (PWM)
+ *  (LED) Neg - (Uno or Nano) GND
+ */
  
 
 #include <MatrixGL.h>
@@ -57,12 +62,14 @@ int charge = 0;
 
 int lifeMeterPin = 3;     // Volt-meter connected to digital PWM pin 3, shows number of life points on display
 int chargeMeterPin = 5;   // Volt-meter connected to digital PWM pin 3, shows number of life points on display
+int chargeLEDPin = 6;     // LED mounted behind Charge Meter's Danger Zone
 
 void setup(){
   Serial.begin(74880);
 
   pinMode(lifeMeterPin, OUTPUT);    // sets the pin as output
   pinMode(chargeMeterPin, OUTPUT);  // sets the pin as output
+  pinMode(chargeLEDPin, OUTPUT);    // sets the pin as output
   
   randomSeed(analogRead(0));
   RandomLifeStart();
@@ -75,8 +82,8 @@ void loop(){
   
   iteration++;
   int num = random(1, 1000);
-  if ((iteration/num) == int(iteration/num)){       // this becomes increasingly unlikely as iterations get higher
-    RandomMutation();                               // Conway's Life tends to stabilise - this sends a random spark every so often to destabilise things again
+  if ((iteration/num) == int(iteration/num)){                       // this becomes increasingly unlikely as iterations get higher
+     if (charge>75) RandomMutation();                               // Conway's Life tends to stabilise - this sends a random spark every so often to destabilise things again
   }
 
 }
@@ -85,7 +92,7 @@ void loop(){
 void RandomMutation() {
   int num;
   boolean value;
-  matrix.lock();
+//  matrix.lock();
   
   for (int r = 0; r < ROWS; r++) {
     for (int c = 0; c < COLS; c++) {
@@ -98,7 +105,7 @@ void RandomMutation() {
       }
     }
   }
-  matrix.unlock();
+//  matrix.unlock();
   charge = 0;
 
 }
@@ -107,7 +114,10 @@ void RandomLifeStart() {
   int num;
   boolean value;
 //  matrix.lock();
-  
+
+  analogWrite(lifeMeterPin,60);                    // analogWrite values from 0 to 255
+  analogWrite(chargeMeterPin,60);                    // analogWrite values from 0 to 255
+
   for (int r = 0; r < ROWS; r++) {
     for (int c = 0; c < COLS; c++) {
       num = random(1, 100);
@@ -117,7 +127,7 @@ void RandomLifeStart() {
       current_state[r][c] = value;
       
       matrix.drawPoint(c, r, value);
-      delay(8);
+      delay(5);
     }
   }
 //  matrix.unlock();
@@ -186,12 +196,20 @@ void NextLife(){
   memcpy(current_state, next, sizeof next);
 
   if (weight >= topWeight) topWeight=weight;
+Serial.print("weight = ");
+Serial.print(weight);
+Serial.print("  top weight = ");
+Serial.print(topWeight);
+Serial.print("  meter = ");
+Serial.println(map(weight, 0, topWeight, 0, 80));
 
-  analogWrite(lifeMeterPin,map(weight, 0, 255, 0, topWeight));                    // analogWrite values from 0 to 255
+  analogWrite(lifeMeterPin,map(weight, 0, topWeight, 0, 80));                    // analogWrite values from 0 to 255
 
     if (charge < 80)  charge++;
     if (charge == 80) charge=75;
     
   analogWrite(chargeMeterPin,charge);                    // analogWrite values from 0 to 255
-  
+  if (charge>70)  digitalWrite(chargeLEDPin,(millis()%500>250));
+  if (charge<=70) digitalWrite(chargeLEDPin,0);
+
 }
