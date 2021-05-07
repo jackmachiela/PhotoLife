@@ -55,14 +55,14 @@ float iteration = 0;
 
 int charge = 0;
 
-int LifeMeter = 3;     // Volt-meter connected to digital PWM pin 3, shows number of life points on display
-int ChargeMeter = 5;   // Volt-meter connected to digital PWM pin 3, shows number of life points on display
+int lifeMeterPin = 3;     // Volt-meter connected to digital PWM pin 3, shows number of life points on display
+int chargeMeterPin = 5;   // Volt-meter connected to digital PWM pin 3, shows number of life points on display
 
 void setup(){
   Serial.begin(74880);
 
-  pinMode(LifeMeter, OUTPUT);    // sets the pin as output
-  pinMode(ChargeMeter, OUTPUT);  // sets the pin as output
+  pinMode(lifeMeterPin, OUTPUT);    // sets the pin as output
+  pinMode(chargeMeterPin, OUTPUT);  // sets the pin as output
   
   randomSeed(analogRead(0));
   RandomLifeStart();
@@ -106,21 +106,21 @@ void RandomMutation() {
 void RandomLifeStart() {
   int num;
   boolean value;
-  matrix.lock();
+//  matrix.lock();
   
   for (int r = 0; r < ROWS; r++) {
     for (int c = 0; c < COLS; c++) {
       num = random(1, 100);
 
       // value = num >= slider;       // use this line to read a potentiometer instead
-      value = num >= 40;           // 40
+      value = num >= 60;           // 40
       current_state[r][c] = value;
       
       matrix.drawPoint(c, r, value);
-      
+      delay(8);
     }
   }
-  matrix.unlock();
+//  matrix.unlock();
   topWeight = 0;
   
 }
@@ -187,11 +187,11 @@ void NextLife(){
 
   if (weight >= topWeight) topWeight=weight;
 
-  analogWrite(LifeMeter,map(weight, 0, 255, 0, topWeight));                    // analogWrite values from 0 to 255
+  analogWrite(lifeMeterPin,map(weight, 0, 255, 0, topWeight));                    // analogWrite values from 0 to 255
 
-    if (charge < 70)  charge++;
-    if (charge == 70) charge=55;
+    if (charge < 80)  charge++;
+    if (charge == 80) charge=75;
     
-  analogWrite(ChargeMeter,charge);                    // analogWrite values from 0 to 255
+  analogWrite(chargeMeterPin,charge);                    // analogWrite values from 0 to 255
   
 }
