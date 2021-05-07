@@ -209,7 +209,7 @@ Serial.println(map(weight, 0, topWeight, 0, 80));
     if (charge == 80) charge=75;
     
   analogWrite(chargeMeterPin,charge);                    // analogWrite values from 0 to 255
-  if (charge>70)  digitalWrite(chargeLEDPin,(millis()%500>250));
+  if (charge>70)  digitalWrite(chargeLEDPin,(millis()%500>250));               // thanks to reddit user u/lumberingJack for this non-blocking LED blinker!
   if (charge<=70) digitalWrite(chargeLEDPin,0);
 
 }
