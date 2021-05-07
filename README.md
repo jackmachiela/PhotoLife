@@ -27,6 +27,7 @@ Conway's Game of Life code shamelessly lifted from gmussi
 - 2x Analogue 5v Volt meter
 - 1x Knife Switch (aka Frankenstein Switch)
 - 1x small red LED
+- 1x 510 Ohm resistor
 - Some wiring
 - Photo-frame, wood, at least 20cm x 25cm
 
@@ -72,18 +73,18 @@ Volt Meter 2 (Life Charge):
     POS   - D5 (WPM)
     NEG   - GND
 
-Life Charge Danger LED:
+Life Charge Danger LED (& Resistor) :
 
     LED - Arduino
     ----- - -------
     POS   - D6 (WPM)
-    NEG   - GND
+    NEG   - 510 Ohm Resistor - GND
 
 The meters should be doing this:
 
 ![](https://github.com/jackmachiela/PhotoLife/blob/main/Images/Conway's%20Game%20of%20Life%20Volt%20meter.gif)
 
-Now, depending on your meters, they might not do much. Some of them have built-in resistors so they work on higher-voltages; you may have to bypass those, and see how they react. Basically, you're looking at sending around 5v through them. In the sourcecode there is a mention of the two meters in the RandomLifeStart() method; you can use that to try a few values to see where the 100% mark is on your meter. Experiment a bit. If it all blows up in your face and sets your house on fire, you're on the right track.
+Now, depending on your meters, they might not do much (or too much!). Some of them have built-in resistors so they work on higher-voltages; you may have to bypass those, and see how they react. Basically, you're looking at sending around 5v through them. In the sourcecode there is a mention of the two meters in the RandomLifeStart() method; you can use that to try a few values to see where the 100% mark is on your meter. Experiment a bit. If it all blows up in your face and sets your house on fire, you're on the right track.
 
 I've also included a few graphics files that I used to replace the Volt measurements, you may have to adjust that depending on the meters you use. Use your imagination to make your own.
 
@@ -99,3 +100,4 @@ Unfortunately I have to wait for a bit to complete my electronics - I've ordered
 
 The next step is to install it into a photo-frame. I have found a nice wooden frame, and have spent a good amount of time getting everything mounted in it. I'm not an expert on this side of things, and I'm sure there are easier ways to do it, but here's a few photos of how I did it. YMMV.
 
+[photos coming still]
