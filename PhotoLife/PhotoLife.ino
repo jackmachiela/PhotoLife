@@ -98,7 +98,7 @@ void RandomMutation() {
     for (int c = 0; c < COLS; c++) {
       num = random(1, 100);
 
-      value = num >= 95;
+      value = num >= 90;
       if (value == 1) {              // only add new points, don't remove any
         current_state[r][c] = value;
         matrix.drawPoint(c, r, value);
