@@ -4,9 +4,18 @@
 #### Introduction
 This project creates an old retro-looking photo-frame with a Conway's Game of Life simulation running in it. It's designed to hang on the wall or stand on a shelf, and to work continuously without stabilising.
 
-To prevent the simulation stabilising, the Frankenstein switch can be thrown to spark new life into the display - zzzap!
+![](https://github.com/jackmachiela/PhotoLife/blob/main/Images/Front%20view%2C%20no%20knife-switch%20yet.JPG)
 
-Additionally, an old style analogue Volt-meter displays the number of life points currently on the display. You know, for science.
+To prevent the simulation stabilising, the Frankenstein switch can be thrown to spark new life into the display - zzzap! I'm still waiting on the [switch](https://www.aliexpress.com/item/1005001859222879.html "Ali Express link") to come in, so at this stage that's a feature for the final version. Watch this space!
+
+
+The simulation is designed to run without stabilising for too long, once the switch is thrown.
+
+![Coming soon!](https://github.com/jackmachiela/PhotoLife/blob/main/Images/Knife%20Switch%20(AliExpress).jpg)
+
+Additionally, two old style analogue Volt-meter display various stats - one shows the current population, while the other shows how much lightning is charged before adding a burst of vitality into the system. You know, for science.
+
+![](https://github.com/jackmachiela/PhotoLife/blob/main/Images/Front%20view%2C%20no%20knife%20switch%20yet%20(landscape).gif)
 
 For more information on Conway's Game of Life, check out the [wiki](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life).
  
@@ -89,6 +98,8 @@ The meters should be doing this:
 
 Now, depending on your meters, they might not do much (or too much!). Some of them have built-in resistors so they work on higher-voltages; you may have to bypass those, and see how they react. Basically, you're looking at sending around 5v through them. In the sourcecode there is a mention of the two meters in the RandomLifeStart() method; you can use that to try a few values to see where the 100% mark is on your meter. Experiment a bit. If it all blows up in your face and sets your house on fire, you're on the right track.
 
+![](https://github.com/jackmachiela/PhotoLife/blob/main/Images/Meters%20(landscape).gif)
+
 I've also included a few graphics files that I used to replace the Volt measurements, you may have to adjust that depending on the meters you use. Use your imagination to make your own.
 
 ![](https://github.com/jackmachiela/PhotoLife/blob/main/Labels/Life%20Charge%20Meter.jpg)
@@ -103,4 +114,12 @@ Unfortunately I have to wait for a bit to complete my electronics - I've ordered
 
 The next step is to install it into a photo-frame. I have found a nice wooden frame, and have spent a good amount of time getting everything mounted in it. I'm not an expert on this side of things, and I'm sure there are easier ways to do it, but here's a few photos of how I did it. YMMV.
 
-[photos coming still]
+![](https://github.com/jackmachiela/PhotoLife/blob/main/Images/Rear%20view%20-%20LEDs%2C%20Meters%2C%20Nano%2C%20LED%20mounted.JPG)
+
+![](https://github.com/jackmachiela/PhotoLife/blob/main/Images/Arduino%20mounted%2C%20with%20view%20of%20resistor.JPG)
+
+#### Conways's Life
+
+Once you've completed the project, I recommend you get it the hell off your desk. It's super mesmerising, and you'll get no further work done. Mine's now in the hallway next to the router. Every home should have a good amount of flashing blinking lights. This is the future, after all.
+
+![The rarely seen Lone Walker](https://github.com/jackmachiela/PhotoLife/blob/main/Images/Lone%20Walker.gif)
