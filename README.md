@@ -118,7 +118,7 @@ The next step is to install it into a photo-frame. I have found a nice wooden fr
 
 ![](https://github.com/jackmachiela/PhotoLife/blob/main/Images/Arduino%20mounted%2C%20with%20view%20of%20resistor.JPG)
 
-#### Conways's Life
+#### Conway's Life
 
 Once you've completed the project, I recommend you get it the hell off your desk. It's super mesmerising, and you'll get no further work done. Mine's now in the hallway next to the router. Every home should have a good amount of flashing blinking lights. This is the future, after all.
 
