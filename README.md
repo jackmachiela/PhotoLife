@@ -2,10 +2,13 @@
 ### Conway's Game of Life, running in a Photo-frame, on an Arduino
  
 #### Introduction
-This project creates an old retro-looking photo-frame with a Conway's Game of Life simulation running in it. It's designed to hang on the wall, and to work continuously without stabilising. To prevent the simulation stabilising, the frankenstein switch can be thrown to spark new life into the display - zzzap!
+This project creates an old retro-looking photo-frame with a Conway's Game of Life simulation running in it. It's designed to hang on the wall or stand on a shelf, and to work continuously without stabilising.
+
+To prevent the simulation stabilising, the Frankenstein switch can be thrown to spark new life into the display - zzzap!
 
 Additionally, an old style analogue Volt-meter displays the number of life points currently on the display. You know, for science.
 
+For more information on Conway's Game of Life, check out the [wiki](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life).
  
 #### Summary
 
