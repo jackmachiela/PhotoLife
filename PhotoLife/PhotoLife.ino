@@ -64,12 +64,17 @@ int lifeMeterPin = 3;     // Volt-meter connected to digital PWM pin 3, shows nu
 int chargeMeterPin = 5;   // Volt-meter connected to digital PWM pin 3, shows number of life points on display
 int chargeLEDPin = 6;     // LED mounted behind Charge Meter's Danger Zone
 
+#define speedPOT  A0    // POT to determine speed is on Analogue pin
+int speedValue = 0;       // Speed starts at 0
+
+
 void setup(){
   Serial.begin(74880);
 
   pinMode(lifeMeterPin, OUTPUT);    // sets the pin as output
   pinMode(chargeMeterPin, OUTPUT);  // sets the pin as output
   pinMode(chargeLEDPin, OUTPUT);    // sets the pin as output
+//  pinMode(speedPOT, INPUT);         // sets the pin as input
   
   randomSeed(analogRead(0));
   RandomLifeStart();
@@ -79,6 +84,11 @@ void setup(){
 void loop(){
 
   NextLife();
+
+  speedValue = analogRead(speedPOT);
+  Serial.print("POT = ");
+  Serial.println(speedValue);
+//  delay(250);
   
   iteration++;
   int num = random(1, 1000);
